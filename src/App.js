@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
 
+export function replaceCamelWithSpaces(colorName) {
+  return colorName.replace(/\B([A-Z])\B/g, ' $1')
+}
+
 function App() {
   const [buttonColor, setButtonColor] = useState("red");
   const newButtonColor = buttonColor === "red" ? "blue" : "red";
@@ -9,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <button
-        style={{ backgroundColor: buttonColor }}
+        style={{ backgroundColor: disabled ? 'gray' : buttonColor }}
         onClick={() => setButtonColor(newButtonColor)}
         disabled={disabled}
       >
@@ -20,13 +24,12 @@ function App() {
         id="disable-button-checkbox"
         onChange={(e) => setDisabled(e.target.checked)}
         defaultChecked={disabled}
-      >
-      </input>
+      ></input>
       <label
-      htmlFor='disable-button-checkbox'
-      // onChange={() => setDisabled(true)}
+        htmlFor="disable-button-checkbox"
+        // onChange={() => setDisabled(true)}
       >
-      Disable button
+        Disable button
       </label>
     </div>
   );
